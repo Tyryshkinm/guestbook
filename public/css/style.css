@@ -1,0 +1,36 @@
+.navbar-brand {
+    font-size: 30px;
+}
+
+.panel-heading {
+    font-size: 24px;
+    color: #777;
+    text-align: center;
+}
+
+.form-horizontal {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin: 10px auto;
+}
+
+.form-control {
+    width: 50%;
+    margin: auto;
+}
+
+.col-md-6 {
+    width: 100%;
+}
+
+.pagination {
+    margin: auto;
+}
+
+.note {
+    border: 1px solid #777;
+    margin-bottom: 10px;
+    color: black;
+}
