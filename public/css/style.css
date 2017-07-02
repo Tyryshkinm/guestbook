@@ -2,6 +2,10 @@
     font-size: 30px;
 }
 
+.row {
+    margin-top: 10px;
+}
+
 .panel-heading {
     font-size: 24px;
     color: #777;
@@ -9,7 +13,7 @@
 }
 
 .form-horizontal {
-    margin-top: 20px;
+    height: 315px;
 }
 
 .form-group {
@@ -29,8 +33,41 @@
     margin: auto;
 }
 
-.note {
-    border: 1px solid #777;
-    margin-bottom: 10px;
-    color: black;
+#sort-by-date, #sort-by-email, #sort-by-user {
+    padding: 0 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sort {
+    text-align: center;
+    margin: -10px;
+}
+
+.note-text {
+    text-align: justify;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.border {
+    border-top: 1px solid #d3e0e9;
+    margin: 15px -15px;
+}
+
+.g-recaptcha>div {
+    margin: auto;
+}
+
+#email-error, #homepage-error {
+    color: red;
+    font-size: 14px;
+}
+
+.alert-success, .alert-danger {
+    text-align: center;
+    font-size: 18px;
+    padding: 0;
+    width: 20%;
+    margin: 15px auto;
 }

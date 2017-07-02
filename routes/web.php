@@ -12,5 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::post('/', 'HomeController@addNote');
+Route::post('/', 'HomeController@index');
+Route::post('add-note', 'HomeController@addNote');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
