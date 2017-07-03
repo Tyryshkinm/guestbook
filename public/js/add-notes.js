@@ -1,4 +1,6 @@
 $(function () {
+    var positiveCount;
+    var negativeCount;
     var emailRegular = /^[a-z0-9_-]+@[a-z0-9-]+\.[a-z]{2,6}$/i;
     var textRegular = /(<([^>]+)>)/ig;
     var ip = $('#ip').data('ip');
@@ -31,6 +33,8 @@ $(function () {
     });
 
     $('#add-note').on('click', function () {
+        positiveCount++;
+        negativeCount--;
         var username = $('#username').val();
         var email = $('#email').val();
         var homepage = $('#homepage').val();
@@ -57,7 +61,7 @@ $(function () {
                                     },
                                     success: function (data) {
                                         var note="";
-                                        note += "<div id=\"note\" hidden>";
+                                        note += "<div id=\"note" + negativeCount + "\" hidden>";
                                         note += "<div class=\"note-text\" '>";
                                         note += text;
                                         note += "<\/div>";
@@ -73,10 +77,7 @@ $(function () {
                                         note += "<div class=\"border\"><\/div>";
                                         note += "<\/div>";
                                         $(note).appendTo(".ajax-note");
-                                        setTimeout(function () {
-                                            $('#note').slideToggle(200);
-                                        }, 200);
-                                        $('#note25').remove();
+                                        $('#note'+ 26 - positiveCount).remove();
                                         setTimeout(function () {
                                             $('.alert-success').fadeIn('fast').text('Note added!');
                                         }, 300);
