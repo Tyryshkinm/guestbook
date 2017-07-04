@@ -14,19 +14,33 @@ class HomeController extends Controller
         $browser = $agent->browser();
         $version = $agent->version($browser);
         $ip = $request->ip();
-        if (isset($_POST['user'])) {
-            $notes = Note::orderBy('username', 'asc')->paginate(25);
-        } elseif (isset($_POST['email'])) {
-            $notes = Note::orderBy('email', 'asc')->paginate(25);
-        } elseif (isset($_POST['date'])) {
-            $notes = Note::orderBy('created_at', 'asc')->paginate(25);
-        } else {
-            $notes = Note::orderBy('id', 'desc')->paginate(25);
+        if ($_COOKIE['type'] == 'user') {
+            if ($_COOKIE['sort'] == 'desc') {
+                $notes = Note::orderBy('username', 'desc')->paginate(25);
+            } elseif ($_COOKIE['sort'] == 'asc') {
+                $notes = Note::orderBy('username', 'asc')->paginate(25);
+            }
         }
-        return view('home')->with(['notes'   => $notes,
-                                        'ip'      => $ip,
-                                        'browser' => $browser,
-                                        'version' => $version]);
+        if ($_COOKIE['type'] == 'email') {
+            if ($_COOKIE['sort'] == 'desc') {
+                $notes = Note::orderBy('email', 'desc')->paginate(25);
+            } elseif ($_COOKIE['sort'] == 'asc') {
+                $notes = Note::orderBy('email', 'asc')->paginate(25);
+            }
+        }
+        if ($_COOKIE['type'] == 'date') {
+            if ($_COOKIE['sort'] == 'desc') {
+                $notes = Note::orderBy('created_at', 'desc')->paginate(25);
+            } elseif ($_COOKIE['sort'] == 'asc') {
+                $notes = Note::orderBy('created_at', 'asc')->paginate(25);
+            }
+        }
+        return view('home')->with([
+            'notes'   => $notes,
+            'ip'      => $ip,
+            'browser' => $browser,
+            'version' => $version
+        ]);
     }
 
     public function addNote(Request $request)

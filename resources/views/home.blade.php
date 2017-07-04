@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-
     <div class="alert alert-danger" role="alert" hidden></div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -94,7 +91,7 @@
                             @endif
                         </div>
                         <div class="text-center">
-                            <div class="pagination">
+                            <div class="pagination justify-content-center">
                                 {{ $notes->links() }}
                             </div>
                         </div>

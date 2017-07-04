@@ -89,61 +89,102 @@ $(function () {
                                         $('#text').val('');
                                     },
                                     error: function () {
-                                        $('.alert-danger').fadeIn('fast').text('Something is wrong');
+                                        $('.alert-danger').slideToggle('fast').fadeIn('fast').text('Something is wrong');
                                         setTimeout(function() {
-                                            $('.alert-danger').fadeOut('fast');
+                                            $('.alert-danger').slideToggle('fast').fadeOut('fast');
                                         }, 1500);
                                     }
                                 });
                             } else {
-                                $('.alert-danger').fadeIn('fast').text('CAPTCHA');
+                                $('.alert-danger').slideToggle('fast').fadeIn('fast').text('CAPTCHA');
                                 setTimeout(function() {
-                                    $('.alert-danger').fadeOut('fast');
+                                    $('.alert-danger').slideToggle('fast').fadeOut('fast');
                                 }, 1500);
                             }
                         } else {
-                            $('.alert-danger').fadeIn('fast').text('The text should not contain html tags');
+                            $('.alert-danger').slideToggle('fast').fadeIn('fast').text('The text should not contain html tags');
                             setTimeout(function() {
-                                $('.alert-danger').fadeOut('fast');
+                                $('.alert-danger').slideToggle('fast').fadeOut('fast');
                             }, 1500);
                         }
                     } else {
-                        $('.alert-danger').fadeIn('fast').text('Text is empty');
+                        $('.alert-danger').slideToggle('fast').fadeIn('fast').text('Text is empty');
                         setTimeout(function() {
-                            $('.alert-danger').fadeOut('fast');
+                            $('.alert-danger').slideToggle('fast').fadeOut('fast');
                         }, 1500);
                     }
                 } else {
-                    $('.alert-danger').fadeIn('fast').text('Incorrect email');
+                    $('.alert-danger').slideToggle('fast').fadeIn('fast').text('Incorrect email');
                     setTimeout(function() {
-                        $('.alert-danger').fadeOut('fast');
+                        $('.alert-danger').slideToggle('fast').fadeOut('fast');
                     }, 1500);
                 }
             } else {
-                $('.alert-danger').fadeIn('fast').text('Email is empty');
+                $('.alert-danger').slideToggle('fast').fadeIn('fast').text('Email is empty');
                 setTimeout(function() {
-                    $('.alert-danger').fadeOut('fast');
+                    $('.alert-danger').slideToggle('fast').fadeOut('fast');
                 }, 1500);
             }
         } else {
-            $('.alert-danger').fadeIn('fast').text('Username is empty');
+            $('.alert-danger').slideToggle('fast').fadeIn('fast').text('Username is empty');
             setTimeout(function() {
-                $('.alert-danger').fadeOut('fast');
+                $('.alert-danger').slideToggle('fast').fadeOut('fast');
             }, 1500);
         }
     });
 
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
     $('#sort-by-user').on('click', function () {
-        alert('user');
-        //locastorage desc asc
+        if (getCookie('type') !== 'user') {
+            document.cookie = "type=user";
+            document.cookie = "sort=desc";
+        } else {
+            if (getCookie('sort') === 'desc') {
+                document.cookie = "sort=asc";
+            } else {
+                document.cookie = "sort=desc";
+            }
+        }
+        location.href = window.location.href;
     });
 
     $('#sort-by-email').on('click', function () {
-        alert('email');
+        if (getCookie('type') !== 'email') {
+            document.cookie = "type=email";
+            document.cookie = "sort=desc";
+        } else {
+            if (getCookie('sort') === 'desc') {
+                document.cookie = "sort=asc";
+            } else {
+                document.cookie = "sort=desc";
+            }
+        }
+        location.href = window.location.href;
     });
 
     $('#sort-by-date').on('click', function () {
-        alert('date');
+        if (getCookie('type') !== 'date') {
+            document.cookie = "type=date";
+            document.cookie = "sort=desc";
+        } else {
+            if (getCookie('sort') === 'desc') {
+                document.cookie = "sort=asc";
+            } else {
+                document.cookie = "sort=desc";
+            }
+        }
+        location.href = window.location.href;
     });
-
+    if (getCookie('sort' === undefined)) {
+        document.cookie = "sort=desc";
+    }
+    if (getCookie('type') === undefined) {
+        document.cookie = "type=date";
+    }
 });
