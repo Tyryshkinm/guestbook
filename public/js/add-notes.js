@@ -1,6 +1,5 @@
 $(function () {
-    var positiveCount;
-    var negativeCount;
+    var count = 1;
     var emailRegular = /^[a-z0-9_-]+@[a-z0-9-]+\.[a-z]{2,6}$/i;
     var textRegular = /(<([^>]+)>)/ig;
     var ip = $('#ip').data('ip');
@@ -19,6 +18,7 @@ $(function () {
         ((''+hour).length<2 ? '0' : '') + hour + ":" +
         ((''+min).length<2 ? '0' : '') + min + ":" +
         ((''+sec).length<2 ? '0' : '') + sec;
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -33,8 +33,8 @@ $(function () {
     });
 
     $('#add-note').on('click', function () {
-        positiveCount++;
-        negativeCount--;
+        count--;
+        var lastNote = 25 + count;
         var username = $('#username').val();
         var email = $('#email').val();
         var homepage = $('#homepage').val();
@@ -61,7 +61,7 @@ $(function () {
                                     },
                                     success: function (data) {
                                         var note="";
-                                        note += "<div id=\"note" + negativeCount + "\" hidden>";
+                                        note += "<div id=\"note" + count + "\">";
                                         note += "<div class=\"note-text\" '>";
                                         note += text;
                                         note += "<\/div>";
@@ -76,14 +76,17 @@ $(function () {
                                         note += "<\/div>";
                                         note += "<div class=\"border\"><\/div>";
                                         note += "<\/div>";
-                                        $(note).appendTo(".ajax-note");
-                                        $('#note'+ 26 - positiveCount).remove();
-                                        setTimeout(function () {
-                                            $('.alert-success').fadeIn('fast').text('Note added!');
-                                        }, 300);
+                                        $(note).prependTo(".ajax-note");
+                                        $('#note' + lastNote).remove();
+                                        $('.alert-success').slideToggle(400).fadeIn('fast').text('Note added!');
                                         setTimeout(function() {
-                                            $('.alert-success').fadeOut('fast');
-                                        }, 1000);
+                                            $('.alert-success').slideToggle(400).fadeOut('fast');
+                                        }, 2000);
+                                        $('#username').val('');
+                                        $('#email').val('');
+                                        $('#homepage').val('');
+                                        grecaptcha.reset();
+                                        $('#text').val('');
                                     },
                                     error: function () {
                                         $('.alert-danger').fadeIn('fast').text('Something is wrong');
@@ -129,4 +132,18 @@ $(function () {
             }, 1500);
         }
     });
+
+    $('#sort-by-user').on('click', function () {
+        alert('user');
+        //locastorage desc asc
+    });
+
+    $('#sort-by-email').on('click', function () {
+        alert('email');
+    });
+
+    $('#sort-by-date').on('click', function () {
+        alert('date');
+    });
+
 });

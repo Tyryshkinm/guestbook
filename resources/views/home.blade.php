@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="alert alert-success" role="alert" hidden></div>
+
     <div class="alert alert-danger" role="alert" hidden></div>
 
     <div class="container">
@@ -53,18 +53,21 @@
                     <div class="panel-body">
                         <form method="post" action="/" class="sort">
                             {{ csrf_field() }}
-                            <button type="submit" name="user" id="sort-by-user" class="btn btn-primary">
+                            <button type="button" name="user" id="sort-by-user" class="btn btn-primary">
                                 Sort by User
                             </button>
-                            <button type="submit" name="email" id="sort-by-email" class="btn btn-primary">
+                            <button type="button" name="email" id="sort-by-email" class="btn btn-primary">
                                 Sort by Email
                             </button>
-                            <button type="submit" name="date" id="sort-by-date" class="btn btn-primary">
+                            <button type="button" name="date" id="sort-by-date" class="btn btn-primary">
                                 Sort by Date
                             </button>
                         </form>
-                        <div class="border"></div>
+                        <div class="border">
+                            <div class="alert alert-success" role="alert" hidden></div>
+                        </div>
                         <div class="list-notes">
+
                             @if(isset($notes) and isset($ip) and isset($browser))
                                 <div hidden id="ip" data-ip="{{ $ip }}"></div>
                                 <div hidden id="browser" data-browser="{{ $browser . ' ' . $version }}"></div>
@@ -85,13 +88,15 @@
                                         <div class="note-ip-browser">
                                             {{ 'IP: ' }}<b>{{ $note->ip }}</b>{{ ' Browser: ' }}<b>{{ $note->browser }}</b>
                                         </div>
+                                        <div class="border"></div>
                                     </div>
-                                    <div class="border"></div>
                                 @endforeach
                             @endif
                         </div>
-                        <div class="pagination justify-content-center">
-                            {{ $notes->links() }}
+                        <div class="text-center">
+                            <div class="pagination">
+                                {{ $notes->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
