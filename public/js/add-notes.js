@@ -4,20 +4,6 @@ $(function () {
     var textRegular = /(<([^>]+)>)/ig;
     var ip = $('#ip').data('ip');
     var browser = $('#browser').data('browser');
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth()+1;
-    var day = date.getDate();
-    var hour = date.getHours();
-    var min = date.getMinutes();
-    var sec = date.getSeconds();
-    var createdAt =
-        ((''+day).length<2 ? '0' : '') + day + '.' +
-        ((''+month).length<2 ? '0' : '') + month + '.' +
-        year + ' ' +
-        ((''+hour).length<2 ? '0' : '') + hour + ":" +
-        ((''+min).length<2 ? '0' : '') + min + ":" +
-        ((''+sec).length<2 ? '0' : '') + sec;
 
     $.ajaxSetup({
         headers: {
@@ -34,6 +20,20 @@ $(function () {
 
     $('#add-note').on('click', function () {
         count--;
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        var createdAt =
+            ((''+day).length<2 ? '0' : '') + day + '.' +
+            ((''+month).length<2 ? '0' : '') + month + '.' +
+            year + ' ' +
+            ((''+hour).length<2 ? '0' : '') + hour + ":" +
+            ((''+min).length<2 ? '0' : '') + min + ":" +
+            ((''+sec).length<2 ? '0' : '') + sec;
         var lastNote = 25 + count;
         var username = $('#username').val();
         var email = $('#email').val();
