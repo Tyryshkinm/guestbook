@@ -14,6 +14,12 @@ class HomeController extends Controller
         $browser = $agent->browser();
         $version = $agent->version($browser);
         $ip = $request->ip();
+        if (!isset($_COOKIE['type'])) {
+            $_COOKIE['type'] = 'date';
+        }
+        if (!isset($_COOKIE['sort'])) {
+            $_COOKIE['sort'] = 'desc';
+        }
         if ($_COOKIE['type'] == 'user') {
             if ($_COOKIE['sort'] == 'desc') {
                 $notes = Note::orderBy('username', 'desc')->paginate(25);

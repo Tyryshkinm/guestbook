@@ -181,10 +181,4 @@ $(function () {
         }
         location.href = window.location.href;
     });
-    if (getCookie('sort' === undefined)) {
-        document.cookie = "sort=desc";
-    }
-    if (getCookie('type') === undefined) {
-        document.cookie = "type=date";
-    }
 });
